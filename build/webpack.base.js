@@ -4,6 +4,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
   // 入口文件
@@ -83,6 +84,7 @@ module.exports = {
         },
       ],
     }),
+    new ReactRefreshWebpackPlugin(), // 添加热更新插件
   ]
 }
 
