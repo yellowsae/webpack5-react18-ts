@@ -3,6 +3,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   // 入口文件
@@ -47,6 +48,18 @@ module.exports = {
           'postcss-loader',
           'less-loader'
         ]
+      },
+      {
+        test: /.(png|jpg|jpeg|gif|svg)$/, // 匹配图片文件
+        type: 'asset', // type选择asset
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024, // 小于10kb转base64位
+          }
+        },
+        generator: {
+          filename: 'static/images/[name][ext]', // 文件输出目录和命名
+        },
       }
     ]
   },
@@ -57,7 +70,19 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.BASE_ENV': JSON.stringify(process.env.BASE_ENV)
-    })
+    }),
+    // 复制文件插件
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, '../public'), // 复制public下文件
+          to: path.resolve(__dirname, '../dist'), // 复制到dist目录中
+          filter: source => {
+            return !source.includes('index.html') // 忽略index.html
+          }
+        },
+      ],
+    }),
   ]
 }
 
