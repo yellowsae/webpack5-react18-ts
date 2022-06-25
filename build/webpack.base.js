@@ -5,6 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+
+const isDev = process.env.NODE_ENV === 'development' // 是否是开发模式
 
 module.exports = {
   // 入口文件
@@ -15,7 +19,7 @@ module.exports = {
   },
   // 打包出口文件
   output: {
-    filename: 'static/js/[name].js',
+    filename: 'static/js/[name].[chunkhash:8].js',   // 加上[chunkhash:8]是为了防止缓存
     path: path.join(__dirname, '../dist'),
     // 自动删除 dist 文件夹
     clean: true,
@@ -31,10 +35,10 @@ module.exports = {
   },
   module: {
     rules: [
-      
+
       {
         include: [path.resolve(__dirname, '../src')], // 只对项目src文件的ts,tsx进行loader解析
-        modules: [path.resolve(__dirname, '../node_modules')],
+        // modules: [path.resolve(__dirname, '../node_modules')],
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
         use: [
           'thread-loader',
@@ -53,10 +57,11 @@ module.exports = {
       },
       {
         include: [path.resolve(__dirname, '../src')],
-        modules: [path.resolve(__dirname, '../node_modules')],
+        // modules: [path.resolve(__dirname, '../node_modules')],
         test: /.(css|less)$/,  // 匹配.css文件
         use: [
-          'style-loader',
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // 开发环境使用style-looader,打包模式抽离css
+          // 'style-loader',
           'css-loader',
           // css 兼容
           'postcss-loader',
@@ -72,7 +77,7 @@ module.exports = {
           }
         },
         generator: {
-          filename: 'static/images/[name][ext]', // 文件输出目录和命名
+          filename: 'static/images/[name].[contenthash:8][ext]', // 文件输出目录和命名
         },
       }
     ]
