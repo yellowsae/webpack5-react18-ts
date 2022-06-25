@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import './app.less'
-import img01 from './assets/imgs/img01.png'
-import img02 from './assets/imgs/img02.png'
+import '@/app.less'
+import img01 from '@/assets/imgs/img01.png'
+import img02 from '@/assets/imgs/img02.png'
 
 function App() {
 

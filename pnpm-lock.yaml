@@ -26,6 +26,7 @@ specifiers:
   react-router-dom: ^6.3.0
   speed-measure-webpack-plugin: ^1.5.0
   style-loader: ^3.3.1
+  thread-loader: ^3.0.4
   webpack: ^5.73.0
   webpack-cli: ^4.10.0
   webpack-dev-server: ^4.9.2
@@ -59,6 +60,7 @@ devDependencies:
   react-router-dom: 6.3.0_react-dom@18.2.0+react@18.2.0
   speed-measure-webpack-plugin: 1.5.0_webpack@5.73.0
   style-loader: 3.3.1_webpack@5.73.0
+  thread-loader: 3.0.4_webpack@5.73.0
   webpack: 5.73.0_webpack-cli@4.10.0
   webpack-cli: 4.10.0_3b4aa6344af4d1c1b3d459cf9e72ba4d
   webpack-dev-server: 4.9.2_ffd7cf999054608223b9fc836cf5004f
@@ -3135,6 +3137,10 @@ packages:
     hasBin: true
     dev: true
 
+  /json-parse-better-errors/1.0.2:
+    resolution: {integrity: sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==}
+    dev: true
+
   /json-parse-even-better-errors/2.3.1:
     resolution: {integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==}
     dev: true
@@ -4301,6 +4307,20 @@ packages:
       acorn: 8.7.1
       commander: 2.20.3
       source-map-support: 0.5.21
+    dev: true
+
+  /thread-loader/3.0.4_webpack@5.73.0:
+    resolution: {integrity: sha512-ByaL2TPb+m6yArpqQUZvP+5S1mZtXsEP7nWKKlAUTm7fCml8kB5s1uI3+eHRP2bk5mVYfRSBI7FFf+tWEyLZwA==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      webpack: ^4.27.0 || ^5.0.0
+    dependencies:
+      json-parse-better-errors: 1.0.2
+      loader-runner: 4.3.0
+      loader-utils: 2.0.2
+      neo-async: 2.6.2
+      schema-utils: 3.1.1
+      webpack: 5.73.0_webpack-cli@4.10.0
     dev: true
 
   /thunky/1.1.0:

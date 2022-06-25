@@ -9,8 +9,10 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 module.exports = {
   // 入口文件
   entry: path.join(__dirname, '../src/index.tsx'),
-
-
+  // 开启缓存
+  cache: {
+    type: 'filesystem', // 使用文件缓存
+  },
   // 打包出口文件
   output: {
     filename: 'static/js/[name].js',
@@ -21,14 +23,23 @@ module.exports = {
     // publicPath: '/'
   },
   resolve: {
-    // 
+    // 配置省略后缀名， 必须加上 .xxx  .xxx
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias: {
+      '@': path.join(__dirname, '../src'),
+    }
   },
   module: {
     rules: [
+      
       {
+        include: [path.resolve(__dirname, '../src')], // 只对项目src文件的ts,tsx进行loader解析
+        modules: [path.resolve(__dirname, '../node_modules')],
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
-        use: 'babel-loader'
+        use: [
+          'thread-loader',
+          'babel-loader'
+        ]
         // use: {
         //   loader: 'babel-loader',
         //   options: {
@@ -41,6 +52,8 @@ module.exports = {
         // }
       },
       {
+        include: [path.resolve(__dirname, '../src')],
+        modules: [path.resolve(__dirname, '../node_modules')],
         test: /.(css|less)$/,  // 匹配.css文件
         use: [
           'style-loader',
