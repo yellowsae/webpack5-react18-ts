@@ -4,7 +4,14 @@
   "description": "form: https://juejin.cn/post/7111922283681153038",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:dev": "cross-env NODE_ENV=development BASE_ENV=development webpack-dev-server -c build/webpack.dev.js",
+    "dev:test": "cross-env NODE_ENV=development BASE_ENV=test webpack-dev-server -c build/webpack.dev.js",
+    "dev:pre": "cross-env NODE_ENV=development BASE_ENV=pre webpack-dev-server -c build/webpack.dev.js",
+    "dev:prod": "cross-env NODE_ENV=development BASE_ENV=production webpack-dev-server -c build/webpack.dev.js",
+    "build:dev": "cross-env NODE_ENV=production BASE_ENV=development webpack -c build/webpack.prod.js",
+    "build:test": "cross-env NODE_ENV=production BASE_ENV=test webpack -c build/webpack.prod.js",
+    "build:pre": "cross-env NODE_ENV=production BASE_ENV=pre webpack -c build/webpack.prod.js",
+    "build:prod": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,10 +22,16 @@
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "babel-loader": "^8.2.5",
+    "cross-env": "^7.0.3",
+    "html-webpack-plugin": "^5.5.0",
+    "react-router-dom": "^6.3.0",
     "webpack": "^5.73.0",
-    "webpack-cli": "^4.10.0"
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.2",
+    "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "html-entities": "^2.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
