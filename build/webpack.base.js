@@ -36,6 +36,23 @@ module.exports = {
             ]
           }
         }
+      },
+      {
+        test: /.(css|less)$/,  // 匹配.css文件
+        use: [
+          'style-loader',
+          'css-loader',
+          // css 兼容
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: ['autoprefixer']
+              }
+            }
+          },
+          'less-loader'
+        ]
       }
     ]
   },
