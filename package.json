@@ -1,0 +1,11 @@
+{
+  "name": "wbepack5-react18-ts",
+  "version": "1.0.0",
+  "description": "form: https://juejin.cn/post/7111922283681153038",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
