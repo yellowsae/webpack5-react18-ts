@@ -3,7 +3,9 @@ const baseConfig = require('./webpack.base.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')  // 压缩CSS
 const TerserPlugin = require('terser-webpack-plugin')  // 压缩JS  --- 开发环境
-
+const globAll = require('glob-all')
+const PurgeCSSPlugin = require('purgecss-webpack-plugin')
+const path = require('path')
 module.exports = merge(baseConfig, {
   mode: 'production',
   devtool: 'eval-cheap-module-source-map',
@@ -19,6 +21,15 @@ module.exports = merge(baseConfig, {
     minimizer: [
       new CssMinimizerPlugin(), // 压缩css
 
+      // 清理无用css
+      new PurgeCSSPlugin({
+        // 检测src下所有tsx文件和public下index.html中使用的类名和id和标签名称
+        // 只打包这些文件中用到的样式
+        paths: globAll.sync([
+          `${path.join(__dirname, '../src')}/**/*.tsx`,
+          path.join(__dirname, '../public/index.html')
+        ])
+      }),
       // 压缩js
       new TerserPlugin({
         parallel: true, // 开启多线程压缩
