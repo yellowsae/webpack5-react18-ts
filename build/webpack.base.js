@@ -26,16 +26,17 @@ module.exports = {
     rules: [
       {
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
-        use: {
-          loader: 'babel-loader',
-          options: {
-            // 预设执行顺序由右往左,所以先处理ts,再处理jsx
-            presets: [
-              '@babel/preset-react',
-              '@babel/preset-typescript'
-            ]
-          }
-        }
+        use: 'babel-loader'
+        // use: {
+        //   loader: 'babel-loader',
+        //   options: {
+        //     // 预设执行顺序由右往左,所以先处理ts,再处理jsx
+        //     presets: [
+        //       '@babel/preset-react',
+        //       '@babel/preset-typescript'
+        //     ]
+        //   }
+        // }
       },
       {
         test: /.(css|less)$/,  // 匹配.css文件

@@ -13,6 +13,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    // 开启装饰器使用
+    "experimentalDecorators": true,
     "jsx": "react", // react18这里也可以改成react-jsx
   },
   "include": ["./src"]
