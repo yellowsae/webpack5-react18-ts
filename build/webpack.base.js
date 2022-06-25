@@ -43,14 +43,7 @@ module.exports = {
           'style-loader',
           'css-loader',
           // css 兼容
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: ['autoprefixer']
-              }
-            }
-          },
+          'postcss-loader',
           'less-loader'
         ]
       }
