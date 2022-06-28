@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "html-entities": "^2.3.3",
+    "pkg-exports": "0.0.1",
     "react": "^18.2.0"
   }
 }
